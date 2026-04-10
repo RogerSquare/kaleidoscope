@@ -18,6 +18,19 @@ import SearchFilter from './demos/search-filter.js';
 import TreeViewDemo from './demos/tree-view.js';
 import LoadingSkeleton from './demos/loading-skeleton.js';
 import GradientText from './demos/gradient-text.js';
+import SplitPanes from './demos/split-panes.js';
+import FuzzyFinder from './demos/fuzzy-finder.js';
+import LineChart from './demos/line-chart.js';
+import MarkdownStream from './demos/markdown-stream.js';
+import MiniDashboard from './demos/mini-dashboard.js';
+import StatusBarDemo from './demos/status-bar.js';
+import VimInput from './demos/vim-input.js';
+import KeybindHelp from './demos/keybind-help.js';
+import LogViewer from './demos/log-viewer.js';
+import JsonInspector from './demos/json-inspector.js';
+import Transitions from './demos/transitions.js';
+import HeatmapDemo from './demos/heatmap.js';
+import BreadcrumbNav from './demos/breadcrumb-nav.js';
 
 const DEMOS = [
   { key: '1', label: 'Claude Spinner', desc: 'Unicode character rotation with variable timing', color: '#da7756', component: ClaudeSpinner },
@@ -37,6 +50,19 @@ const DEMOS = [
   { key: 'e', label: 'Tree View', desc: 'Expandable folders, tree lines, file icons', color: '#3fb950', component: TreeViewDemo },
   { key: 'f', label: 'Loading Skeletons', desc: 'Shimmer placeholders, content transition', color: '#da7756', component: LoadingSkeleton },
   { key: 'g', label: 'Gradient & Color', desc: 'HSL interpolation, animated gradients, presets', color: '#ff00ff', component: GradientText },
+  { key: 'h', label: 'Split Panes', desc: 'Resizable side-by-side panels, focus switching', color: '#58a6ff', component: SplitPanes },
+  { key: 'i', label: 'Fuzzy Finder', desc: 'Non-contiguous matching, scoring, 90+ files', color: '#fdb32a', component: FuzzyFinder },
+  { key: 'j', label: 'Line Chart', desc: 'Braille dot plotting, sparklines, live data', color: '#3fb950', component: LineChart },
+  { key: 'k', label: 'Markdown Stream', desc: 'Streaming renderer with bold, code, lists, links', color: '#bc8cff', component: MarkdownStream },
+  { key: 'l', label: 'Mini Dashboard', desc: 'Composed layout: services, charts, logs, status', color: '#da7756', component: MiniDashboard },
+  { key: 'm', label: 'Status Bar', desc: 'Modes, connection, clock, branch, keybinds', color: '#d29922', component: StatusBarDemo },
+  { key: 'n', label: 'Vim Mode', desc: 'Normal/Insert/Visual, hjkl, w/b, dd, yy, p', color: '#58a6ff', component: VimInput },
+  { key: 'o', label: 'Keybind Help', desc: 'Press ? for shortcut overlay, categories, modifiers', color: '#d29922', component: KeybindHelp },
+  { key: 'p', label: 'Log Viewer', desc: 'Streaming logs, level filters, auto-scroll', color: '#58a6ff', component: LogViewer },
+  { key: 'r', label: 'JSON Inspector', desc: 'Collapsible tree, syntax coloring, path tracking', color: '#d29922', component: JsonInspector },
+  { key: 's', label: 'Transitions', desc: 'Fade, slide, wipe, expand between panels', color: '#da7756', component: Transitions },
+  { key: 't', label: 'Heatmap', desc: 'Contribution graph, color schemes, cell select', color: '#3fb950', component: HeatmapDemo },
+  { key: 'u', label: 'Breadcrumbs', desc: 'Hierarchical drill-down, path segments, 4 levels', color: '#58a6ff', component: BreadcrumbNav },
 ];
 
 // Animated title characters
