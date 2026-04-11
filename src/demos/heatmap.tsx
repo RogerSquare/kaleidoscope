@@ -4,6 +4,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { Box, Text, useInput } from 'ink';
+import { getLevel } from '../lib/utils.js';
 
 const WEEKS = 26;
 const DAYS = 7;
@@ -45,14 +46,6 @@ function generateData(): number[][] {
     data.push(week);
   }
   return data;
-}
-
-function getLevel(val: number): number {
-  if (val === 0) return 0;
-  if (val <= 2) return 1;
-  if (val <= 5) return 2;
-  if (val <= 9) return 3;
-  return 4;
 }
 
 function getDateStr(week: number, day: number): string {

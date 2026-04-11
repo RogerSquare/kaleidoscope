@@ -4,6 +4,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { Box, Text, useInput } from 'ink';
+import { fuzzyMatch, type FuzzyMatch } from '../lib/utils.js';
 
 // 100+ items dataset
 const ITEMS = [
@@ -48,49 +49,6 @@ const ITEMS = [
   'infra/kubernetes/deployment.yaml', 'infra/kubernetes/service.yaml',
   'infra/kubernetes/ingress.yaml',
 ];
-
-interface FuzzyMatch {
-  item: string;
-  score: number;
-  matchedIndices: number[];
-}
-
-function fuzzyMatch(query: string, item: string): FuzzyMatch | null {
-  if (!query) return { item, score: 0, matchedIndices: [] };
-
-  const lowerQuery = query.toLowerCase();
-  const lowerItem = item.toLowerCase();
-  const matchedIndices: number[] = [];
-  let queryIdx = 0;
-  let score = 0;
-  let prevMatchIdx = -2;
-
-  for (let i = 0; i < lowerItem.length && queryIdx < lowerQuery.length; i++) {
-    if (lowerItem[i] === lowerQuery[queryIdx]) {
-      matchedIndices.push(i);
-
-      // Scoring bonuses
-      if (i === 0) score += 10;                          // Start of string
-      if (lowerItem[i - 1] === '/' || lowerItem[i - 1] === '.' || lowerItem[i - 1] === '-' || lowerItem[i - 1] === '_')
-        score += 8;                                       // After separator
-      if (i === prevMatchIdx + 1) score += 5;            // Consecutive match
-      else score += 1;                                    // Gap penalty reduction
-
-      prevMatchIdx = i;
-      queryIdx++;
-    }
-  }
-
-  // All query characters must match
-  if (queryIdx < lowerQuery.length) return null;
-
-  // Bonus for shorter items (more relevant)
-  score += Math.max(0, 50 - item.length);
-  // Bonus for query length ratio
-  score += Math.round((query.length / item.length) * 20);
-
-  return { item, score, matchedIndices };
-}
 
 function HighlightedPath({ path, matchedIndices, isActive }: { path: string; matchedIndices: number[]; isActive: boolean }) {
   const matchSet = new Set(matchedIndices);

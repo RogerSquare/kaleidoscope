@@ -4,13 +4,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { Box, Text, useInput } from 'ink';
-
-interface TreeNode {
-  name: string;
-  type: 'folder' | 'file';
-  size?: string;
-  children?: TreeNode[];
-}
+import { countAll, flattenTree, getFileIcon, type TreeNode, type FlatNode } from '../lib/utils.js';
 
 const TREE: TreeNode[] = [
   { name: 'src', type: 'folder', children: [
@@ -58,54 +52,6 @@ const TREE: TreeNode[] = [
   { name: 'README.md', type: 'file', size: '3.2 KB' },
   { name: '.gitignore', type: 'file', size: '0.1 KB' },
 ];
-
-interface FlatNode {
-  node: TreeNode;
-  depth: number;
-  isLast: boolean;
-  parentIsLast: boolean[];
-  path: string;
-  childCount: number;
-}
-
-function flattenTree(nodes: TreeNode[], expanded: Set<string>, depth: number = 0, parentIsLast: boolean[] = [], parentPath: string = ''): FlatNode[] {
-  const result: FlatNode[] = [];
-  nodes.forEach((node, idx) => {
-    const isLast = idx === nodes.length - 1;
-    const path = parentPath ? `${parentPath}/${node.name}` : node.name;
-    const childCount = node.children ? countAll(node.children) : 0;
-    result.push({ node, depth, isLast, parentIsLast: [...parentIsLast], path, childCount });
-    if (node.type === 'folder' && node.children && expanded.has(path)) {
-      result.push(...flattenTree(node.children, expanded, depth + 1, [...parentIsLast, isLast], path));
-    }
-  });
-  return result;
-}
-
-function countAll(nodes: TreeNode[]): number {
-  let count = 0;
-  for (const n of nodes) {
-    count++;
-    if (n.children) count += countAll(n.children);
-  }
-  return count;
-}
-
-const FILE_ICONS: Record<string, { icon: string; color: string }> = {
-  '.tsx': { icon: '◇', color: '#58a6ff' },
-  '.ts':  { icon: '◇', color: '#3178c6' },
-  '.js':  { icon: '◆', color: '#f1e05a' },
-  '.json': { icon: '{}', color: '#d29922' },
-  '.md':  { icon: '#', color: '#58a6ff' },
-  '':     { icon: '◦', color: '#8b949e' },
-};
-
-function getFileIcon(name: string): { icon: string; color: string } {
-  for (const [ext, style] of Object.entries(FILE_ICONS)) {
-    if (ext && name.endsWith(ext)) return style;
-  }
-  return FILE_ICONS[''];
-}
 
 export default function TreeView() {
   const [expanded, setExpanded] = useState<Set<string>>(new Set(['src', 'backend']));

@@ -4,6 +4,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { Box, Text, useInput } from 'ink';
+import { padCell } from '../lib/utils.js';
 
 interface Row {
   name: string;
@@ -52,11 +53,6 @@ const STATUS_STYLES: Record<string, { icon: string; color: string }> = {
 };
 
 type SortDir = 'asc' | 'desc';
-
-function padCell(val: string, width: number, align: 'left' | 'right'): string {
-  if (val.length > width) return val.slice(0, width - 1) + '…';
-  return align === 'right' ? val.padStart(width) : val.padEnd(width);
-}
 
 export default function DataTable() {
   const [sortCol, setSortCol] = useState(0);

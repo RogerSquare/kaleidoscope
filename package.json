@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/app.tsx",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@types/react": "^19.2.14",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.4"
   }
 }

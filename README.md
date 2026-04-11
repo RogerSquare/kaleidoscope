@@ -1,3 +1,5 @@
+![CI](https://github.com/RogerSquare/terminal-ui-showcase/actions/workflows/ci.yml/badge.svg)
+
 # Terminal UI Showcase
 
 An interactive collection of terminal UI demos built with TypeScript, React, and Ink. Each demo isolates a specific animation pattern or interaction component so you can see how it works in the terminal.
