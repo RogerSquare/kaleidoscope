@@ -12,7 +12,7 @@ const SAMPLE_JSON = {
   author: {
     name: "Roger Ochoa",
     email: "rog@r-that.com",
-    url: "https://rogersquare.github.io"
+    url: "https://r-that.com"
   },
   scripts: {
     dev: "node server.js",
@@ -45,7 +45,7 @@ const SAMPLE_JSON = {
     allowedOrigins: [
       "http://localhost:5173",
       "http://localhost:3001",
-      "https://rogersquare.github.io"
+      "https://r-that.com"
     ]
   },
   tags: ["typescript", "react", "express", "kanban", "ai-agents"],
