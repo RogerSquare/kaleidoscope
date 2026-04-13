@@ -2,6 +2,16 @@
 
 # Kaleidoscope
 
+> Terminal UI playground — isolated animation patterns and interaction components, each as a self-contained React-in-terminal demo.
+
+**Live demo:** Clone and `npm install && npm run dev` (demos run locally in your terminal)
+**Stack:** TypeScript · React · Ink (React renderer for CLIs) · Vitest
+**Status:** Active
+
+## What's interesting technically
+
+Each demo is a self-contained React component rendered *directly to the terminal* using Ink — not to a DOM, not to a canvas, to a TTY. The trick is making React's declarative lifecycle cooperate with the ~60-90ms ANSI paint cycle of a real terminal: `useState` diffs translate into cursor-position rewrites, and `useEffect` schedules frame updates at terminal-sane cadence. The structure borrows from how `Claude Code`, `lazygit`, and `btop` render rich TUIs — surfaced here as small, learnable demos instead of a whole application.
+
 *(formerly Terminal UI Showcase)*
 
 An interactive collection of terminal UI demos built with TypeScript, React, and Ink. Each demo isolates a specific animation pattern or interaction component so you can see how it works in the terminal.
